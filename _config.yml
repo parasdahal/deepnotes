@@ -1,0 +1,28 @@
+gems:
+  - jekyll-paginate
+  - jekyll-gist
+# Dependencies
+markdown:         KramdownPygments
+highlighter:      pygments
+
+# Permalinks
+permalink:        /:title
+
+# Setup
+title:            DeepNotes
+tagline:          'Deep Learning Demystified'
+description:      'Deep Learning Demystified'
+url:              http://localhsot:4000
+baseurl:          /
+
+author:
+  name:           'Paras Dahal'
+  url:            https://parasdahal.com
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/parasdahal/deepnet
