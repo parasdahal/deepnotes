@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Convolution Layer - The core idea behind CNNs
+comments: true
+categories: cnn-series
 ---
 Convolutional operation takes a patch of the image, and applies a filter by performing a dot product on it. The convolution layer is similar to fully connected layer, but performs convolution operation on input rather than matrix multiplication.
 

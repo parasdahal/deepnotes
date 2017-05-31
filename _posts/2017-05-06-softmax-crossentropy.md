@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Classification and Loss Evaluation - Softmax and Cross Entropy Loss
+comments: true
+categories: cnn-series
 ---
 ### The Softmax Function
 
