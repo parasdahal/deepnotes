@@ -265,3 +265,14 @@ a.sidebar-nav-item:focus {
   background-image: url(/public/images/abstract.jpg) !important;
   background-position: -250px -200px;
 }
+.social{
+  display: inline-block !important;
+}
+.social img{
+  display: inline !important;
+  margin: 5px;
+  max-height: 30px !important;;
+}
+p.lead{
+  color:rgba(255,255,255,0.7) !important;
+}

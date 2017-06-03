@@ -8,10 +8,10 @@ Convolutional operation takes a patch of the image, and applies a filter by perf
 
 The convolutional layer takes an input volume of:
 
-1. Number of input images $$N$$
-2. The depth or number of channels of input $$C$$
-3. Height of the input image $$H$$
-4. Width of the input image $$W$$
+1. Number of input $$N$$
+2. The depth of input $$C$$
+3. Height of the input $$H$$
+4. Width of the input $$W$$
 
 These hyperparameters control the size of output volume:
 
@@ -26,7 +26,7 @@ The spatial size of output is given by $$(H-F+2P)/S+1 \times (W-F+2P)/S+1$$
 
 ### Forward Propagation
 
-Convolutional layer replaces the matrix multiplication with convolution operation. To compute the pre non linearity for $$i,j^{th}$$ neuron on $$l$$ layer, we have:
+As stated earlier, convolutional layer replaces the matrix multiplication with convolution operation. To compute the pre non linearity for $$i,j^{th}$$ neuron on $$l$$ layer, we have:
 
 
 $$
@@ -189,79 +189,55 @@ dX = col2im_indices(dX_col,X.shape,h_filter,w_filter,padding,stride)
 Here is the source code for convolutional layer with forward and backward API implemented.
 
 ```python
-import numpy as np
-from im2col import *
+class Conv():
 
-class ConvLayer():
+    def __init__(self,X_dim,n_filter,h_filter,w_filter,stride,padding):
 
-    def __init__(self,X_shape,num_filter,h_filter,w_filter,stride,padding):
-        
-        # shape of input volume
-        self.num_image,self.c_image,self.h_image,self.w_image = X_shape
-        
-        # parameters that define output volume
-        self.num_filter,self.h_filter,self.w_filter = num_filter,h_filter,w_filter
+        self.d_X,self.h_X,self.w_X = X_dim
+
+        self.n_filter,self.h_filter,self.w_filter = n_filter,h_filter,w_filter
         self.stride,self.padding = stride,padding
+
+        self.W = np.random.randn(n_filter,self.d_X,h_filter,w_filter) / np.sqrt(n_filter/2.)
+        self.b = np.zeros((self.n_filter,1))
+        self.params = [self.W,self.b]
+
+        self.h_out = (self.h_X - h_filter + 2*padding)/ stride + 1
+        self.w_out = (self.w_X - w_filter + 2*padding)/ stride + 1
         
-        # create and initialize weights and bias for the layer
-        self.W = np.random.randn(num_filter,self.c_image,h_filter,w_filter)
-        self.b = np.zeros((self.num_filter,1))
 
-        # calculate the shape of output volume
-        self.h_output = ((self.h_image - h_filter + 2*padding)/ stride) + 1
-        self.w_output = ((self.w_image - w_filter + 2*padding)/ stride) + 1
-
-        if not h_output.is_integer() or not w_output.is_integer():
+        if not self.h_out.is_integer() or not self.w_out.is_integer():
             raise Exception("Invalid dimensions!")
+
+        self.h_out,self.w_out  = int(self.h_out), int(self.w_out)
+        self.out_dim = (self.n_filter,self.h_out,self.w_out)
 
     def forward(self,X):
         
-        # convert input to columns of receptive fields
-        self.X_col = im2col_indices(X,self.h_filter,self.w_filter\
-                                    ,stride=self.stride,padding=self.padding)
-        
-        # flatten each filters to multiply with each receptive field
-        # resultant matrix of each row is a flattened filter 
-        W_row = self.W.reshape(self.num_filter,self.c_image*self.h_filter*self.w_filter)
-        
-        # multiply each filter to each receptive field and add the bias term
-        # resultant matrix is of size (num_filter x num_receptive_fields)
-        # it has dot product of every filter with every field, which is convolution
-        out = np.dot(W_row,self.X_col) + self.b
+        self.n_X = X.shape[0]
 
-        # unpack the convolved region
-        # then transpose to (num_image x num_filter x h_output x w_output )
-        out = out.reshape(self.num_filter,self.h_output,\
-                          self.w_output,self.num_image).transpose(3,0,1,2)
+        self.X_col = im2col_indices(X,self.h_filter,self.w_filter,stride=self.stride,padding=self.padding)        
+        W_row = self.W.reshape(self.n_filter,-1)
+
+        out = W_row @ self.X_col + self.b
+        out = out.reshape(self.n_filter,self.h_out,self.w_out,self.n_X)
+        out = out.transpose(3,0,1,2)
         return out
 
     def backward(self,dout):
-        
-        # dout is of shape (num_image x num_filter x h_output x w_output)
-        # transpose so that we flat dout into (num_filter * flattened image)
-        dout_flat = dout.transpose(1,2,3,0).reshape(self.num_filter,-1)
-        
-        # multiply the gradient with local gradient
-        # reshape the resultant to the shape of the weight matrix
-        dW = np.dot(dout_flat,self.X_col.T)
+
+        dout_flat = dout.transpose(1,2,3,0).reshape(self.n_filter,-1)
+
+        dW = dout_flat @ self.X_col.T
         dW = dW.reshape(self.W.shape)
 
-        # accumulate the gradient to get bias
-        db = np.sum(dout,axis=(0,2,3)).reshape(self.num_filter,-1)
+        db = np.sum(dout,axis=(0,2,3)).reshape(self.n_filter,-1)
 
-        # flatten the each filter in the weight matrix
-        W_flat = self.W.reshape(self.num_filter,-1)
+        W_flat = self.W.reshape(self.n_filter,-1)
 
-        # perform convolution with gradient from previous layer
-        # but with spatially flipped filters along both the axes
-        dX_col = np.dot(W_flat.T,dout_flat)
+        dX_col = W_flat.T @ dout_flat
+        shape = (self.n_X,self.d_X,self.h_X,self.w_X)
+        dX = col2im_indices(dX_col,shape,self.h_filter,self.w_filter,self.padding,self.stride)
 
-        X_shape = (self.num_image,self.c_image,self.h_image,self.w_image)
-        # reshape the input gradient to the shape of input volume
-        dX = col2im_indices(dX_col,X_shape,self.h_filter,self.w_filter,\
-                            self.padding,self.stride)
-        
-        return dX, dW, db
+        return dX, [dW, db]
 ```
-
-

@@ -141,29 +141,29 @@ dgamma = dout * X_norm
 Here is the source code for BatchNorm layer with forward and backward API implemented.
 
 ```python
-class BatchNorm():
+class Batchnorm():
 
-    def __init__(self,X_shape):
-        self.X_shape = X_shape
-        n_X,c_X,h_X,w_X = self.X_shape
-        self.gamma = np.ones((1,c_X*h_X*w_X)) 
-        self.beta = np.zeros((1,c_X*h_X*w_X)) 
+    def __init__(self,X_dim):
+        self.d_X, self.h_X, self.w_X = X_dim
+        self.gamma = np.ones((1, int(np.prod(X_dim)) ))
+        self.beta = np.zeros((1, int(np.prod(X_dim))))
+        self.params = [self.gamma,self.beta]
 
     def forward(self,X):
-        n_X,c_X,h_X,w_X = self.X_shape
-        self.X_flat = X.reshape(n_X,c_X*h_X*w_X)
+        self.n_X = X.shape[0]
+        self.X_shape = X.shape
         
+        self.X_flat = X.ravel().reshape(self.n_X,-1)
         self.mu = np.mean(self.X_flat,axis=0)
         self.var = np.var(self.X_flat, axis=0)
         self.X_norm = (self.X_flat - self.mu)/np.sqrt(self.var + 1e-8)
         out = self.gamma * self.X_norm + self.beta
         
-        return out.reshape(X.shape)
+        return out.reshape(self.X_shape)
 
     def backward(self,dout):
-        n_X,c_X,h_X,w_X = self.X_shape
-        dout = dout.reshape(n_X,c_X*h_X*w_X)
 
+        dout = dout.ravel().reshape(dout.shape[0],-1)
         X_mu = self.X_flat - self.mu
         var_inv = 1./np.sqrt(self.var + 1e-8)
         
@@ -172,9 +172,10 @@ class BatchNorm():
 
         dX_norm = dout * self.gamma
         dvar = np.sum(dX_norm * X_mu,axis=0) * -0.5 * (self.var + 1e-8)**(-3/2)
-        dmu = np.sum(dX_norm * -var_inv ,axis=0) + dvar * 1/n_X * np.sum(-2.* X_mu, axis=0)
-        dX = (dX_norm * var_inv) + (dmu / n_X) + (dvar * 2/n_X * X_mu)
+        dmu = np.sum(dX_norm * -var_inv ,axis=0) + dvar * 1/self.n_X * np.sum(-2.* X_mu, axis=0)
+        dX = (dX_norm * var_inv) + (dmu / self.n_X) + (dvar * 2/self.n_X * X_mu)
         
-        dX = dX.reshape(n_X,c_X,h_X,w_X)
-        return dX, dgamma, dbeta
+        dX = dX.reshape(self.X_shape)
+        return dX, [dgamma, dbeta]
 ```
+

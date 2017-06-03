@@ -6,7 +6,7 @@ markdown:         KramdownPygments
 highlighter:      pygments
 
 # Permalinks
-permalink:        /:title
+permalink:        /:categories/:title
 
 # Setup
 title:            DeepNotes

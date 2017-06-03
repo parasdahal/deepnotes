@@ -80,7 +80,7 @@ def get_minibatches(X,y,minibatch_size):
 
 **Update Rule**
 
-SGD uses a very simple update rule to change the parameters along the negative gradient. Assume we have a list with tuples of learnable parameter for each layer in order ``params`` and a similar list for gradients ``grads`` calculated by backward pass with tuples of gradients for each learnable parameter, our simple update rule would be:
+SGD uses a very simple update rule to change the parameters along the negative gradient. Assume we have a list learnable parameters for each layer in order ``params`` and a similar list for gradients ``grads`` calculated by backward pass with tuples of gradients for each learnable parameter, our simple update rule would be:
 
 ```python
 def vanilla_update(params,grads,learning_rate=0.01):
@@ -102,8 +102,7 @@ def sgd(nnet,X_train,y_train,minibatch_size,epoch,learning_rate,verbose=True,\
         if verbose:
             print("Epoch {0}".format(i+1))
         for X_mini, y_mini in minibatches: 
-            out,loss = nnet.forward(X_mini,y_mini)
-            grads = nnet.backward(out,y_mini)
+            loss,grads = nnet.train_step(X_mini,y_mini)
             vanilla_update(nnet.params,grads,learning_rate = learning_rate)
         if verbose:
             train_acc = accuracy(y_train,nnet.predict(X_train))
@@ -160,8 +159,7 @@ def sgd_momentum(nnet,X_train,y_train,minibatch_size,epoch,learning_rate,mu = 0.
         if verbose:
             print("Epoch {0}".format(i+1))
         for X_mini, y_mini in minibatches:
-            out,loss = nnet.forward(X_mini,y_mini)
-            grads = nnet.backward(out,y_mini)
+            loss,grads = nnet.train_step(X_mini,y_mini)
             momentum_update(velocity,nnet.params,grads,learning_rate=learning_rate,mu=mu)
         if verbose:
             train_acc = accuracy(y_train,nnet.predict(X_train))
@@ -203,8 +201,7 @@ def sgd_momentum(nnet,X_train,y_train,minibatch_size,epoch,learning_rate,mu = 0.
                     for i in range(len(param)):
                         param[i] += mu*ve[i]
            
-            out,loss = nnet.forward(X_mini,y_mini)
-            grads = nnet.backward(out,y_mini)    
+            loss,grads = nnet.train_step(X_mini,y_mini) 
             momentum_update(velocity,nnet.params,grads,learning_rate=learning_rate,mu=mu)
         
         if verbose:
@@ -270,9 +267,7 @@ def adam(nnet,X_train,y_train,minibatch_size,epoch,learning_rate,verbose=True,\
             print("Epoch {0}".format(i+1))
         t = 1
         for X_mini, y_mini in minibatches: 
-            out,loss = nnet.forward(X_mini,y_mini)
-            grads = nnet.backward(out,y_mini)
-            
+            loss,grads = nnet.train_step(X_mini,y_mini)
             for c,v,param,grad, in zip(cache,velocity,nnet.params,reversed(grads)):
                 for i in range(len(grad)):
                     c[i] = beta1 * c[i] + (1-beta1) * grad[i]
