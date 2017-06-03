@@ -12,7 +12,7 @@ permalink:        /:categories/:title
 title:            DeepNotes
 tagline:          'Deep Learning Demystified'
 description:      'Deep Learning Demystified'
-url:              http://localhsot:4000
+url:              http://deepnotes.io
 baseurl:          /
 
 author:
