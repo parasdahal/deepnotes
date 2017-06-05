@@ -1,6 +1,7 @@
 gems:
   - jekyll-paginate
   - jekyll-gist
+  - jekyll-seo-tag
 # Dependencies
 markdown:         KramdownPygments
 highlighter:      pygments
@@ -23,6 +24,5 @@ paginate:         5
 
 # Custom vars
 version:          2.1.0
-
 github:
   repo:           https://github.com/parasdahal/deepnet
