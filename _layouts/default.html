@@ -18,6 +18,8 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+{% if jekyll.environment == 'production' %}
   {% include analytics.html %}
+{% endif %}
   </body>
 </html>
