@@ -3,7 +3,7 @@ gems:
   - jekyll-gist
   - jekyll-seo-tag
 # Dependencies
-markdown:         KramdownPygments
+markdown:         kramdown
 highlighter:      rouge
 
 # Permalinks
