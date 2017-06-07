@@ -4,6 +4,8 @@ title: Classification and Loss Evaluation - Softmax and Cross Entropy Loss
 comments: true
 categories: cnn-series
 ---
+{% include series.html %}
+
 ### The Softmax Function
 
 Softmax function takes an N-dimensional vector of real numbers and transforms it into a vector of real number in range (0,1) which add upto 1. 

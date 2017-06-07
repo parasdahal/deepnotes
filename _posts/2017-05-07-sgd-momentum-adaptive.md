@@ -4,6 +4,8 @@ title: Solving the model - SGD, Momentum and Adaptive Learning Rate
 comments: true
 categories: cnn-series
 ---
+{% include series.html %}
+
 Once we have the model of our neural network, we need to find the best set of parameters to minimize the training/test loss and maximize the accuracy of the model. Model solver brings together training data, the model and the optimization algorithms to train the model. A model solver has:
 
 1. Training and Test dataset

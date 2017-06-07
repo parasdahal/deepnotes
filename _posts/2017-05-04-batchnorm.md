@@ -4,7 +4,7 @@ title: BatchNorm Layer - Understanding and eliminating Internal Covariance Shift
 comments: true
 categories: cnn-series
 ---
-
+{% include series.html %}
 We know that feature scaling makes the job of gradient descent easy and allows it to converge faster. Feature scaling is performed as a pre-processing task on the dataset. But once the normalized input is fed to the deep network, as each layer is affected by parameters in all the input layer, even a small change in the network parameter is amplified and leads to the input distribution being changed in the internal layers of the network. This is known as internal covariance shift.
 
 Batch Normalization is an idea introduced by Ioffe & Szegedy in 2015 ([original paper](http://arxiv.org/pdf/1502.03167v3.pdf)) of normalizing activations of every fully connected and convolution layer with unit standard deviation and zero mean during training, as a part of the network architecture itself. It allows us to use much higher learning rates and be less careful about network initialization.

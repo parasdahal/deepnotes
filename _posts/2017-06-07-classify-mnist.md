@@ -4,6 +4,7 @@ title: Putting it all together and Classifying MNIST dataset
 comments: true
 categories: cnn-series
 ---
+{% include series.html %}
 
 ## The Neural Network class
 
