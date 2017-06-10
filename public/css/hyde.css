@@ -276,3 +276,7 @@ a.sidebar-nav-item:focus {
 p.lead{
   color:rgba(255,255,255,0.7) !important;
 }
+.post img{
+  text-align: center !important;
+  margin: 0 auto !important;
+}
