@@ -17126,9 +17126,6 @@ if (browser) {
     window.document.addEventListener("DOMContentLoaded", function (event) {
       renderOnLoad(window.document, data);
       // Add a banner if we're not on localhost.
-      if (window.location.hostname !== "localhost" && window.location.origin !== "file://") {
-        banner(window.document, data);
-      }
       generateCrossref(data);
       // console.log(data);
     });
