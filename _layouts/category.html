@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<div class="posts-list l-page">
+    <h2 class="post-tag">Articles Under <small>#{{ page.tag }}</small></h2>
+    {% for post in site.categories[page.tag] %}
+    <div class="post-preview">
+        <div class="metadata">
+                <div>{{ post.date | date: "%b %d, %Y" }}</div><br/>
+
+                {% for cat in post.categories %}<a href="/category/{{cat}}">{{cat}}</a><br/>{% endfor %}
+        </div>
+        <div class="thumbnail"><img src="{{post.thumbnail}}"></div>
+        <div class="description">
+            <a href="{{ post.url }}"><h2 class="post-title">{{ post.title }}</h2></a>
+            <p>{{ post.excerpt }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>

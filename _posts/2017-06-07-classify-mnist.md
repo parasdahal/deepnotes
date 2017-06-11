@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Putting it all together and Classifying MNIST dataset
+excerpt: Time for showdown! Lets assemble the layers, bring forward our model solvers and try to train the CNN we implemented from scratch on the oh so popular MNIST dataset and see how well we can do.
 comments: true
 categories: cnn-series
+thumbnail: /public/images/mnist-cnn.jpg
 ---
 {% include series.html %}
 
@@ -46,6 +48,8 @@ class NeuralNet:
         X = self.forward(X)
         return np.argmax(softmax(X), axis=1)
 ```
+
+---
 
 ## Classifying MNIST Dataset
 

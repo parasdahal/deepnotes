@@ -1,8 +1,10 @@
 ---
 layout: post
-title: Introduction to TensorFlow and The Computation Graph
+title: Introduction to TensorFlow and Computation Graph
 comments: true
 tags: tensorflow-computation-graph
+categories: tensorflow
+thumbnail: /public/images/tf_logo.jpg
 ---
 
 Tensorflow is very popular and powerful machine learning library from Google. It was developed by Google Brain Team for in-house research and later open sourced on November 2015. It has been widely adopted in research and production and has become one of the most popular library for Deep Learning.
@@ -40,9 +42,11 @@ Every node in TensorFlow has an attached gradient operations which calculates de
 Automatic differentiation is very important because you don’t want to have to hand-code a new variation of backpropagation every time you’re experimenting with a new arrangement of neural networks. This makes TensorFlow a helpful tool to use in research and allows to iterate quickly without having to worry about implementation errors.
 
 
-**Portability and Flexibility **
+**Portability and Flexibility**
 
 TensorFlow models can be trained on both CPU and GPUs, and can run anywhere from mobile to server farms with a single API. This makes TensorFlow a great candidate for both research and production and has become one of the mostly used library in Deep Learning.
+
+-----
 
 ## Understanding the Computation Graph
 
@@ -167,6 +171,8 @@ train_step = tf.train.GradientDescentOptimizer(learning_rate = 0.1).minimize(los
 1. Computes the gradient of our argument (loss node) with respect to to all the variables (weights and biases)
 2. Applies gradient updates to all those variables.
 
+---
+
 ## Running the graph
 
 We have constructed the necessary ingredients of our computation graph. Now we are going to execute the graph with a Session. 
@@ -241,6 +247,8 @@ Accuracy of model:  0.8569
 ```
 
 The above linear classifier was trained for 1000 iterations and gave classification error on test data of 85.69%. Not bad!
+
+---
 
 ## Visualization using TensorBoard
 
@@ -320,6 +328,7 @@ biases = tf.Variable(tf.zeros([10]),name="biases")
 
 ![Graph](/public/images/linear_graph.png)
 
+---
 
 ## The Source Code
 

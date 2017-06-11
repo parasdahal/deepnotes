@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Convolution Layer - The core idea behind CNNs
+excerpt: What makes CNN special is of course the Convolution Layers. Inspired by how visual cortex in animals work, these layers extract features independent of where they occur in the images. Lets derive the math and implement our own Conv Layer!
 comments: true
 categories: cnn-series
+thumbnail: /public/images/conv.png
 ---
 {% include series.html %}
 
@@ -25,6 +27,8 @@ These hyperparameters control the size of output volume:
 The spatial size of output is given by $$(H-F+2P)/S+1 \times (W-F+2P)/S+1$$
 
 **Note:** When $$S=1,P = (F-1)/2$$ preserves the input volume size.
+
+---
 
 ### Forward Propagation
 
@@ -128,6 +132,7 @@ output = np.dot(W_col,X_col) + b
 output = output.reshape(n_filter,h_out,w_out,n_X).transpose(3,0,1,2)
 ```
 
+---
 
 ### Backward Propagation
 
@@ -185,6 +190,8 @@ dX_col = np.dot(W_flat.T,dout_flat)
 # from the stretched out image to real image i.e. 9x500 to 5x3x10x10
 dX = col2im_indices(dX_col,X.shape,h_filter,w_filter,padding,stride) 
 ```
+
+---
 
 ### Source Code
 

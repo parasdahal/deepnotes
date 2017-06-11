@@ -2,36 +2,31 @@
 layout: default
 title: Home
 ---
-<div class="series">
-<h1 class="series-title">Implementing Convolutional Neural Networks</h1>
+<div class="l-page series">
+<h3 class="series-title">Implementing Convolutional Neural Networks</h3>
 <p>
-A series of posts to understand the concepts and mathematics behind Convolutinal Neural Networks and implement your own CNN in Python and Numpy. Complete source code can be found <a href="https://github.com/parasdahal/deepnet">here</a>.
+<a href="/implementing-cnn">Implementing Convolutional Neural Networks</a> is a series of posts to understand the concepts and mathematics behind Convolutinal Neural Networks and implement your own CNN in Python and Numpy. Complete source code can be found <a href="https://github.com/parasdahal/deepnet">here</a>.
 </p>
-<ol>
-  <li><a href="{{ site.baseurl }}cnn-series/intro">Introduction to Convolutional Neural Networks</a></li>
-  <li><a href="{{ site.baseurl }}cnn-series/convlayer">Convolution Layer - The core idea behind CNNs</a></li>
-  <li><a href="{{ site.baseurl }}cnn-series/maxpool">Maxpool Layer - Summarizing the output of Convolution Layer</a></li>
-  <li><a href="{{ site.baseurl }}cnn-series/batchnorm">BatchNorm Layer - Understanding and eliminating Internal Covariance Shift</a></li>
-  <li><a href="{{ site.baseurl }}cnn-series/dropout">Dropout Layer - The unconventional regularization technique</a></li>
-  <li><a href="{{ site.baseurl }}cnn-series/softmax-crossentropy">Classification and Loss Evaluation - Softmax and Cross Entropy Loss</a></li>
-  <li><a href="{{ site.baseurl }}cnn-series/sgd-momentum-adaptive">Solving the model - SGD, Momentum and Adaptive Learning Rate</a></li>
-  <li><a href="{{ site.baseurl }}cnn-series/classify-mnist">Putting it all together and Classifying MNIST dataset</a></li>
-</ol>
 </div>
+
 <hr>
-<div class="posts">
+<div class="posts-list l-page">
+  <!--<h2 class="post-tag">Latest Articles</h2>-->
   {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+  <div class="post-preview">
+    <div class="metadata">
+            <div>{{ post.date | date: "%b %d, %Y" }}</div><br/>
 
-    {{ post.content }}
-
+             {% for cat in post.categories %}<a href="/category/{{cat}}">{{cat}}</a><br/>{% endfor %}
+    </div>
+    <div class="thumbnail"><img src="{{post.thumbnail}}"></div>
+    <div class="description">
+      <a href="{{ post.url }}"><h2 class="post-title">{{ post.title }}</h2></a>
+      <p>{{ post.excerpt }}</p>
+    </div>
   </div>
   {% endfor %}
+</div>
 </div>
 
 <div class="pagination">

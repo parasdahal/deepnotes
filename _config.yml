@@ -2,12 +2,13 @@ gems:
   - jekyll-paginate
   - jekyll-gist
   - jekyll-seo-tag
+
 # Dependencies
 markdown:         kramdown
 highlighter:      rouge
 
 # Permalinks
-permalink:        /:categories/:title
+permalink:        /:title
 
 # Setup
 title:            DeepNotes
@@ -19,8 +20,22 @@ baseurl:          /
 author:
   name:           'Paras Dahal'
   url:            https://parasdahal.com
+  affiliation:    ''
 
-paginate:         5
+paginate:         10
+
+# Collections
+collections:
+  category:
+    output: true
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: category
+    values:
+      layout: "category"
 
 # Custom vars
 version:          2.1.0

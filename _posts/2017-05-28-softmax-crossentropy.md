@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Classification and Loss Evaluation - Softmax and Cross Entropy Loss
+excerpt: Lets dig a little deep into how we convert the output of our CNN into probability - Softmax; and the loss measure to guide our optimization - Cross Entropy.
 comments: true
 categories: cnn-series
+thumbnail: /public/images/softmax.png
 ---
 {% include series.html %}
 
@@ -112,6 +114,8 @@ $$
 \frac{\partial p_j}{\partial a_j} =  p_i(\delta_{ij}-p_j)
 $$
 
+---
+
 ### Cross Entropy Loss
 
 Cross entropy indicates the distance between what the model believes the output distribution should be, and what the original distribution really is. It is defined as,
@@ -134,6 +138,8 @@ def cross_entropy(X,y):
 ```
 
 
+
+---
 
 ### Derivative of Cross Entropy Loss with Softmax
 

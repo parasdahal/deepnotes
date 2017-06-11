@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Solving the model - SGD, Momentum and Adaptive Learning Rate
+excerpt: Thanks to active research, we are much better equipped with various optimization algorithms than just vanilla Gradient Descent. Lets discuss two more different approaches to Gradient Descent - Momentum and Adaptive Learning Rate.
 comments: true
 categories: cnn-series
+thumbnail: /public/images/updates.gif
 ---
 {% include series.html %}
 
@@ -15,6 +17,8 @@ Once we have the model of our neural network, we need to find the best set of pa
 5. Optimized parameters for the model
 
 Let us start developing the ideas around building our model solver with a brief review of the backbone of all popular optimizers, Gradient Descent.
+
+---
 
 ### Gradient Descent
 
@@ -59,6 +63,8 @@ There are other variations of Gradient Descent with few ideas added to allow fas
 4. Adaptive gradient (AdaGrad)
 5. RMSprop
 6. Adam
+
+---
 
 ### Stochastic Gradient Descent
 
@@ -115,6 +121,8 @@ def sgd(nnet,X_train,y_train,minibatch_size,epoch,learning_rate,verbose=True,\
 ```
 
 
+
+---
 
 ### Momentum
 
@@ -214,6 +222,8 @@ def sgd_momentum(nnet,X_train,y_train,minibatch_size,epoch,learning_rate,mu = 0.
 ```
 
 
+
+---
 
 ### Adaptive Learning Rate
 

@@ -1,13 +1,23 @@
 ---
 layout: post
 title: BatchNorm Layer - Understanding and eliminating Internal Covariance Shift
+excerpt: Batch Normalization is new technique that gives relaxation while initializing the network, allows higher learning rate and allows us to train very deep networks. Very promising! Lets derive the math for forward and backward pass step by step by hand and implement the BatchNorm layer!
+author: Paras Dahal
 comments: true
 categories: cnn-series
+thumbnail: /public/images/bn.png
+refs:
+ - key: bnpaper
+   title: Batch Normalization | Accelerating Deep Network Training by Reducing Internal Covariate Shift
+   author: Sergey Ioffe, Christian Szegedy
+   journal: arXiv:1502.03167
+   year: 2015
+   url: https://arxiv.org/pdf/1502.03167v3.pdf
 ---
 {% include series.html %}
 We know that feature scaling makes the job of gradient descent easy and allows it to converge faster. Feature scaling is performed as a pre-processing task on the dataset. But once the normalized input is fed to the deep network, as each layer is affected by parameters in all the input layer, even a small change in the network parameter is amplified and leads to the input distribution being changed in the internal layers of the network. This is known as internal covariance shift.
 
-Batch Normalization is an idea introduced by Ioffe & Szegedy in 2015 ([original paper](http://arxiv.org/pdf/1502.03167v3.pdf)) of normalizing activations of every fully connected and convolution layer with unit standard deviation and zero mean during training, as a part of the network architecture itself. It allows us to use much higher learning rates and be less careful about network initialization.
+Batch Normalization is an idea introduced by Ioffe & Szegedy <dt-cite key="bnpaper"></dt-cite> of normalizing activations of every fully connected and convolution layer with unit standard deviation and zero mean during training, as a part of the network architecture itself. It allows us to use much higher learning rates and be less careful about network initialization.
 
 It is implemented as a layer (with trainable parameters) and normalizes the activations of the previous layer. Backpropagation allows the network to learn if they want the activations to be normalized and upto what extent. It is inserted immediately after fully connected or convolutional layers and before nonlinearities. It effectively reduces the internal covariance shift in deep networks. 
 
@@ -17,6 +27,8 @@ It is implemented as a layer (with trainable parameters) and normalizes the acti
 2. Reduces dependency on careful initialization
 3. Allows higher learning rates
 4. Provides regularization and reduces dependency on dropout
+
+---
 
 ### Forward Propagation
 
@@ -45,6 +57,8 @@ X_norm = (X_flat - mu)/np.sqrt(var + 1e-8)
 
 out = gamma * X_norm + beta
 ```
+
+---
 
 ### Backward Propagation
 
@@ -135,6 +149,8 @@ dX = (dX_norm * var_inv) + (dmu / n_X) + (dvar * 2/n_X * X_mu)
 dbeta = np.sum(dout,axis=0)
 dgamma = dout * X_norm
 ```
+
+---
 
 ### Source code
 

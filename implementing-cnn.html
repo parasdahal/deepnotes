@@ -1,0 +1,40 @@
+---
+layout: page
+title: Implementing CNN
+---
+<div class="l-page">
+<h2 class="series-title">Implementing Convolutional Neural Networks</h2>
+<p>
+A series of posts to understand the concepts and mathematics behind Convolutinal Neural Networks and implement your own CNN in Python and Numpy. Complete source code can be found <a href="https://github.com/parasdahal/deepnet">here</a>.
+</p>
+</div>
+
+<div class="posts-list l-page">
+
+​    {% for post in site.categories['cnn-series'] reversed %}
+
+​    <div class="post-preview">
+
+​        <div class="metadata">
+
+​                <div>{{ post.date | date: "%b %d, %Y" }}</div><br/>
+
+​                {% for cat in post.categories %}<a href="/category/{{cat}}">{{cat}}</a><br/>{% endfor %}
+
+​        </div>
+
+​        <div class="thumbnail"><img src="{{post.thumbnail}}"></div>
+
+​        <div class="description">
+
+​            <a href="{{ post.url }}"><h2 class="post-title">{{ post.title }}</h2></a>
+
+​            <p>{{ post.excerpt }}</p>
+
+​        </div>
+
+​    </div>
+
+​    {% endfor %}
+
+</div>
