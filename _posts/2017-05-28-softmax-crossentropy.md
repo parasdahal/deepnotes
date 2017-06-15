@@ -8,6 +8,8 @@ thumbnail: /public/images/softmax.png
 ---
 {% include series.html %}
 
+*Note: Complete source code can be found here [https://github.com/parasdahal/deepnet](https://github.com/parasdahal/deepnet)*
+
 ### The Softmax Function
 
 Softmax function takes an N-dimensional vector of real numbers and transforms it into a vector of real number in range (0,1) which add upto 1. 

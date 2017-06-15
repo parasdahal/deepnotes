@@ -8,6 +8,8 @@ thumbnail: /public/images/mnist-cnn.jpg
 ---
 {% include series.html %}
 
+*Note: Complete source code can be found here [https://github.com/parasdahal/deepnet](https://github.com/parasdahal/deepnet)*
+
 ## The Neural Network class
 
 Now that we have our layers and optimizers ready, we need to bring them together for us to train. To do this, we implement a ```NeuralNet``` class to encapsulate our group of layers as a single network.

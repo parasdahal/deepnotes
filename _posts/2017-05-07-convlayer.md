@@ -8,6 +8,8 @@ thumbnail: /public/images/conv.png
 ---
 {% include series.html %}
 
+*Note: Complete source code can be found here [https://github.com/parasdahal/deepnet](https://github.com/parasdahal/deepnet)*
+
 Convolutional operation takes a patch of the image, and applies a filter by performing a dot product on it. The convolution layer is similar to fully connected layer, but performs convolution operation on input rather than matrix multiplication.
 
 The convolutional layer takes an input volume of:

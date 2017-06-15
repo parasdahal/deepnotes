@@ -8,6 +8,8 @@ thumbnail: /public/images/updates.gif
 ---
 {% include series.html %}
 
+*Note: Complete source code can be found here [https://github.com/parasdahal/deepnet](https://github.com/parasdahal/deepnet)*
+
 Once we have the model of our neural network, we need to find the best set of parameters to minimize the training/test loss and maximize the accuracy of the model. Model solver brings together training data, the model and the optimization algorithms to train the model. A model solver has:
 
 1. Training and Test dataset
