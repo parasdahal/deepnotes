@@ -50,7 +50,7 @@ The code for our stable softmax is as follows:
 
 ```python
 def stable_softmax(X):
-    exps = np.exp(X) - np.max(X)
+    exps = np.exp(X - np.max(X))
     return exps / np.sum(exps)
 ```
 
