@@ -3,6 +3,7 @@ layout: post
 title: Introduction to TensorFlow and Computation Graph
 comments: true
 tags: tensorflow-computation-graph
+excerpt: Tensorflow is very popular and powerful machine learning library from Google. It was developed by Google Brain Team for in-house research and later open sourced on November 2015. It has been widely adopted in research and production and has become one of the most popular library for Deep Learning.
 categories: tensorflow
 thumbnail: /public/images/tf_logo.jpg
 ---
