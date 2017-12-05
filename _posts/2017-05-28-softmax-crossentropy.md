@@ -130,7 +130,7 @@ Cross entropy measure is a widely used alternative of squared error. It is used 
 def cross_entropy(X,y):
     """
     X is the output from fully connected layer (num_examples x num_classes)
-    y is one hot encoded labels (num_examples x num_classes)
+    y is labels (num_examples x 1)
     """
     m = y.shape[0]
     p = softmax(X)
@@ -189,7 +189,7 @@ which is a very simple and elegant expression. Translating it into code,
 def delta_cross_entropy(X,y):
     """
     X is the output from fully connected layer (num_examples x num_classes)
-    y is one hot encoded labels (num_examples x num_classes)
+    y is labels (num_examples x 1)
     """
     m = y.shape[0]
     grad = softmax(X)
