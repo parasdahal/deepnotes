@@ -8,6 +8,9 @@ p img{
 text-align: center !important;
 margin: 0 auto !important;
 }
+.powered-by-sumo{
+  display: none !important;
+}
 /* Header */
 dt-header {
   display: block;
