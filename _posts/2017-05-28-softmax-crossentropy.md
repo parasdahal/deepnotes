@@ -5,6 +5,17 @@ excerpt: Lets dig a little deep into how we convert the output of our CNN into p
 comments: true
 categories: cnn-series
 thumbnail: /public/images/softmax.png
+refs:
+ - key: thegreenplace
+   title: The Softmax function and its derivative
+   author: Eli Bendersky
+   url: https://eli.thegreenplace.net/2016/the-softmax-function-and-its-derivative/
+   year: 2016
+ - key: cs231
+   title: CS231n Convolutional Neural Networks for Visual Recognition
+   url: http://cs231n.github.io/convolutional-networks/
+   author: Andrej Karpathy, Andrej Karpathy, Fei-Fei Li
+   year: 2016
 ---
 {% include series.html %}
 
@@ -145,7 +156,7 @@ def cross_entropy(X,y):
 
 ### Derivative of Cross Entropy Loss with Softmax
 
-Cross Entropy Loss with Softmax function are used as the output layer extensively. Now we use the derivative of softmax that we derived earlier to derive the derivative of the cross entropy loss function.
+Cross Entropy Loss with Softmax function are used as the output layer extensively. Now we use the derivative of <dt-cite key="thegreenplace">softmax</dt-cite> that we derived earlier to derive the derivative of the cross entropy loss function.
 
 
 $$
@@ -183,7 +194,7 @@ $$
 
 
 
-which is a very simple and elegant expression. Translating it into code,
+which is a very simple and elegant expression. Translating it into <dt-cite key="cs231">code</dt-cite>
 
  ```python
 def delta_cross_entropy(X,y):
