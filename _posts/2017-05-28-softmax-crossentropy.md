@@ -25,7 +25,7 @@ refs:
 
 Softmax function takes an N-dimensional vector of real numbers and transforms it into a vector of real number in range (0,1) which add upto 1. 
 $$
-p_j = \frac{e^{a_i}}{\sum_{k=1}^N e^a_k}
+p_i = \frac{e^{a_i}}{\sum_{k=1}^N e^a_k}
 $$
 
 
@@ -48,7 +48,7 @@ To make our softmax function numerically stable, we simply normalize the values 
 
 $$
 \begin{align}
-p_j &= \frac{e^{a_i}}{\sum_{k=1}^N e^{a_k}} \\
+p_i &= \frac{e^{a_i}}{\sum_{k=1}^N e^{a_k}} \\
 &= \frac{Ce^{a_i}}{C\sum_{k=1}^N e^{a_k}} \\
 &= \frac{e^{a_i + \log(C)}}{\sum_{k=1}^N e^{a_k + \log(C)}} \\
 \end{align}
@@ -74,7 +74,7 @@ Due to the desirable property of softmax function outputting a probability distr
 
 $$
 \begin{align}
-\frac{\partial p_j}{\partial a_j} &= \frac{\partial  \frac{e^{a_i}}{\sum_{k=1}^N e^{a_k}}}{\partial a_j} \\
+\frac{\partial p_i}{\partial a_j} &= \frac{\partial  \frac{e^{a_i}}{\sum_{k=1}^N e^{a_k}}}{\partial a_j} \\
 \end{align}
 $$
 
@@ -112,7 +112,7 @@ So the derivative of the softmax function is given as,
 
 
 $$
-\frac{\partial p_j}{\partial a_j} = 
+\frac{\partial p_i}{\partial a_j} = 
 \begin{cases}p_i(1-p_j) &  if & i=j \\
 -p_j.p_i & if & i \neq j
 \end{cases}
@@ -124,7 +124,7 @@ Or using Kronecker delta $$\delta{ij} = \begin{cases} 1 & if & i=j \\ 0 & if & i
 
 
 $$
-\frac{\partial p_j}{\partial a_j} =  p_i(\delta_{ij}-p_j)
+\frac{\partial p_i}{\partial a_j} =  p_i(\delta_{ij}-p_j)
 $$
 
 ---
@@ -145,6 +145,9 @@ def cross_entropy(X,y):
     """
     m = y.shape[0]
     p = softmax(X)
+    # We use multidimensional array indexing to extract 
+    # softmax probability of the correct label for each sample.
+    # Refer to https://docs.scipy.org/doc/numpy/user/basics.indexing.html#indexing-multi-dimensional-arrays for understanding multidimensional array indexing.
     log_likelihood = -np.log(p[range(m),y])
     loss = np.sum(log_likelihood) / m
     return loss
@@ -201,6 +204,8 @@ def delta_cross_entropy(X,y):
     """
     X is the output from fully connected layer (num_examples x num_classes)
     y is labels (num_examples x 1)
+    	Note that y is not one-hot encoded vector. 
+    	It can be computed as y.argmax(axis=1) from one-hot encoded vectors of labels if required.
     """
     m = y.shape[0]
     grad = softmax(X)
