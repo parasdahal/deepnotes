@@ -170,3 +170,110 @@ h2.post-tag {
   }
 }
 
+/* TOC */
+
+#contents nav a {
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: none;
+  text-decoration: none;
+}
+
+#contents nav ul li {
+  margin-bottom: .25em;
+}
+
+#contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6);
+}
+
+#contents nav details ul {
+  margin-top: 0;
+}
+
+#contents nav details > a {
+  margin-left: 1.06em;
+}
+
+#contents nav summary,
+#contents nav > div,
+#contents nav details > a {
+  display: block;
+  outline: none;
+  margin-bottom: 0.5em;
+}
+
+#contents nav > div {
+  margin-left: 1.06em;
+}
+
+#contents nav summary {
+  cursor: context-menu;
+}
+
+#contents nav summary,
+#contents nav > div > a {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/*Header*/
+dt-article > h2{
+  text-align: left !important;
+}
+dt-byline{
+  width: 100vw !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Table*/
+.open-problem {
+  display: flex;
+  color: #333;
+  background-color: hsla(206, 90%, 20%, 0.03);
+  border-left: 3px solid hsla(206, 50%, 20%, 0.8);
+  padding: 0.5em 2em;
+  margin-bottom: 0.5em;
+  counter-increment: problem;
+  list-style: none !important;
+}
+
+.problem-number{
+  font-size: 75%;
+  font-weight: 600;
+  color: hsla(206, 50%, 20%, 0.8);
+  margin-right: 2em;
+  white-space: nowrap;
+}
+.open-problem a{
+font-size: 75%;
+  font-weight: 600;
+  margin-right: 2em;
+  white-space: nowrap;
+text-decoration: none !important;
+border-bottom: none !important;
+}
+
+.open-problem p {
+  margin-bottom: .55em;
+}
+
+.open-problem p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* typography edits */
+
+/*--------[Desktop Only]--------*/
+@media only screen and (min-width: 1180px){
+  body.post > dt-article p{
+  font-size: 18px !important;
+  color: rgba(0, 0, 0, 0.8) !important;
+  line-height: 29px !important;
+}
+body.post dt-article p, body.post dt-article h2, body.post dt-article h3, body.post dt-article ul, body.post dt-article ol{
+  min-width: 800px
+}
+body.post dt-article img{
+  max-width: 800px !important;
+}
+}

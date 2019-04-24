@@ -19,7 +19,7 @@ baseurl:          /
 
 author:
   name:           'Paras Dahal'
-  url:            https://parasdahal.com
+  url:            https://twitter.com/parasdahal
   affiliation:    ''
 
 paginate:         10
@@ -40,4 +40,4 @@ defaults:
 # Custom vars
 version:          2.1.0
 github:
-  repo:           https://github.com/parasdahal/deepnet
+  repo:           https://github.com/parasdahal/deepnotes

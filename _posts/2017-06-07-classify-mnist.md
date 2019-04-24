@@ -16,7 +16,7 @@ Now that we have our layers and optimizers ready, we need to bring them together
 
 The class stores the list of layer objects and parameters for each layer and implements the ```forward``` and ```backward``` methods to flow the output and gradients through these layers. It also implements ```train_step``` method, which is used by our solver to perform forward and backward pass and get loss and gradients for each iteration.
 
-Here is the implementation of ```NeuralNet``` class.
+## Here is the implementation of ```NeuralNet``` class.
 
 ```python
 class NeuralNet:
