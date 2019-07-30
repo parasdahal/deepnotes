@@ -3,7 +3,9 @@
 }
 pre.highlight code{
   white-space: pre-wrap;
+  
 }
+
 p img{
 text-align: center !important;
 margin: 0 auto !important;
@@ -276,4 +278,91 @@ body.post dt-article p, body.post dt-article h2, body.post dt-article h3, body.p
 body.post dt-article img{
   max-width: 800px !important;
 }
+}
+
+/* Table of contents 2019-07-30 */
+.tableoc{
+  display: flex;
+  color: #333;
+  background-color: hsla(206, 90%, 20%, 0.03);
+  border-left: 3px solid hsla(206, 50%, 20%, 0.8);
+  padding: 1em 2em;
+  counter-increment: problem;
+
+}
+
+.tableoc li{
+font-size: 14px !important;
+}
+
+.tableoc > ol{
+list-style: square;
+}
+
+.toc-list li{
+  margin-bottom: .5em;
+}
+
+.tableoc ol ol{
+margin-left: 20px;
+}
+/*--------[Desktop Only]--------*/
+@media only screen and (min-width: 1180px){
+.tableoc{
+  margin-top: 0px;
+}
+#main-content{
+  margin-top: -70px;
+}
+div.highlight{
+  width: 125% !important;
+  margin-left: -12.5%;
+}
+}
+/* Code editor theme 2019-07-30*/
+
+pre > code {
+  font-size:11px !important;
+	position: relative !important;
+	border-left: 10px solid #358ccb !important;
+	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf !important;
+	background-color: #fdfdfd !important; 
+	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%) !important;
+	background-size: 3em 3em !important; 
+	background-origin: content-box !important;
+	background-attachment: local !important;
+}
+code{
+  color: black !important; 
+	background: none !important;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+	font-size: 1em !important;
+	text-align: left !important;
+	white-space: pre !important;
+	word-spacing: normal !important;
+	word-break: normal !important;
+	word-wrap: normal !important;
+	line-height: 1.5 !important;
+
+	-moz-tab-size: 4 !important;
+	-o-tab-size: 4 !important;
+	tab-size: 4 !important;
+
+	-webkit-hyphens: none !important;
+	-moz-hyphens: none !important;
+	-ms-hyphens: none !important;
+	hyphens: none !important;
+}
+.colab a{
+  box-shadow: none !important;
+  border: none !important;
+
+}
+.colab img{
+  max-height: 20px !important;
+    padding-bottom:10px !important;
+}
+.caption{
+  font-size: 14px;
+  line-height: 1.5em;
 }

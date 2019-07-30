@@ -3,8 +3,8 @@ layout: post
 title: Deep Clustering
 comments: true
 tags: deep-clustering
-excerpt: Introduction, survey and discussion of recent works on deep neural network based clustering algorithms.
-categories: unsupervised
+excerpt: Can deep neural networks learn to do clustering? Introduction, survey and discussion of recent works on deep clustering algorithms.
+categories: deep-clustering
 thumbnail: /public/images/Framework.jpg
 refs:
  - key: challenges

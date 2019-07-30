@@ -1,66 +1,89 @@
 {% include head.html %}
 
   <body class="post">
-  {% include header.html %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-coy.css">
+        {% include header.html %}
 
     <div class="content container">
         <script type="text/front-matter">
             title: {{ page.title }}
             published: {{ page.date }}
             authors:
-            - {{site.author.name}}: {{site.author.url}}
+            - {{site.author.name}}
             affiliations:
             - {{site.author.affiliation}}
         </script>
-
-    <dt-article class="centered">
+    
+        <dt-article class="l-screen" id="header">
             <h1>{{page.title}}</h1>
             <h2>{{page.excerpt}}</h2>
-            <dt-byline></dt-byline>
-            {{ content }}
-            
-        <dt-appendix>
-        </dt-appendix>
-
-        <script type="text/bibliography">
-        {% for ref in page.refs %}
-        @article{ {{ref.key}},
-            title={ {{ref.title}} },
-            author={ {{ref.author}} },
-            journal={ {{ref.journal}} },
-            year={ {{ref.year}}},
-            url ={ {{ref.url}} }
-        }
-        {% endfor %}
-        </script>
-
-        <div class="comments">
-            <h1>Comments</h1>
-            {% if page.comments %}
-            <div id="disqus_thread"></div>
-            <script>
-                var disqus_config = function () {
-                this.page.url = '{{ page.url | absolute_url }}';
-                this.page.identifier = '{{ page.url | absolute_url }}';
-                };
-                (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://deepnotes.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                            
+            {% if page.colab %}
+            <div class="colab"><a href="{{page.colab}}" target="_blank"><img src="/public/images/colab-button.png"/></a></div>
             {% endif %}
-        </div>
-    </dt-article>    
-        
+            <!-- Table of content -->
+            <div class="tableoc"></div>
+            <dt-byline></dt-byline>
+        </dt-article>
 
+        <dt-article class="centered" id="main-content">
+            
+            {{ content }}
+            <dt-appendix></dt-appendix>
+
+            <script type="text/bibliography">
+            {% for ref in page.refs %}
+            @article{ {{ref.key}},
+                title={ {{ref.title}} },
+                author={ {{ref.author}} },
+                journal={ {{ref.journal}} },
+                year={ {{ref.year}}},
+                url ={ {{ref.url}} }
+            }
+            {% endfor %}
+            </script>
+        </dt-article>
+
+        <dt-article class="centered">
+            <div class="comments">
+                <h1>Comments</h1>
+                {% if page.comments %}
+                <div id="disqus_thread"></div>
+                <script>
+                    var disqus_config = function () {
+                    this.page.url = '{{ page.url | absolute_url }}';
+                    this.page.identifier = '{{ page.url | absolute_url }}';
+                    };
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://deepnotes.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                                
+                {% endif %}
+            </div>
+        </dt-article>    
     </div>
+    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML-full"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
     {% if jekyll.environment == 'production' %}
     {% include analytics.html %}
     {% endif %}
+    <script>
+        tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.tableoc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '#main-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h2, h3, h4',
+        collapseDepth: 3,
+        });
+    </script>
+
   </body>
 </html>

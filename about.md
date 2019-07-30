@@ -4,9 +4,7 @@ title: About
 ---
 
 
- Hi,
+Hello, I am Paras Dahal. I am a Machine Learning Researcher and I implement deep learning models and like to keep up with latest and greatest in AI research.
 
-I am Paras Dahal, an Artificial Intelligence Engineer. I implement deep learning models and like to keep up with latest and greatest in AI research.
-
-You can contact me at parasdahal99@gmail.com or [@parasdahal](http://twitter.com/parasdahal) 
+You can contact me at *parasdahal99 [at] gmail.com* or connect with me in [twitter](http://twitter.com/parasdahal) 
 
