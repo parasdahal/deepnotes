@@ -3,6 +3,11 @@ gems:
   - jekyll-gist
   - jekyll-seo-tag
 
+plugins:
+  - jekyll-paginate
+  - jekyll-gist
+  - jekyll-seo-tag
+
 # Dependencies
 markdown:         kramdown
 highlighter:      rouge
