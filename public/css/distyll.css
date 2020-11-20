@@ -368,7 +368,7 @@ code{
 }
 
 .deepnote-logo-header {
-  max-height: 32px;
+  max-height: 32px !important;
   position: relative;
   top: 14px;
   background-color: #fff;
