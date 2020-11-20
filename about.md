@@ -10,4 +10,4 @@ This blog is my attempt at addressing concepts and ideas in machine learning I f
 
 Get in touch with me at *parasdahal99 [at] gmail.com* or via [Twitter](http://twitter.com/parasdahal). 
 
-PS: If you would like to guest-write in this blog, feel free to let me know!
+PS: If you would like to guest-write on this blog, let me know!
