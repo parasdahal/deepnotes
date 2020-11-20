@@ -18,7 +18,8 @@ margin: 0 auto !important;
 /* Header */
 dt-header {
   display: block;
-  position: relative;
+  position: sticky;
+  top: 0;
   height: 60px;
   background-color: hsl(200, 60%, 15%);
   width: 100%;
