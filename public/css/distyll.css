@@ -366,3 +366,12 @@ code{
   font-size: 14px;
   line-height: 1.5em;
 }
+
+.deepnote-logo-header {
+  max-height: 32px;
+  position: relative;
+  top: 14px;
+  background-color: #fff;
+  border-radius: 50px;
+  margin-left: 15px;
+}
