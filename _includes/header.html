@@ -1,23 +1,40 @@
 <dt-header>
   <div class="content l-page">
     <a href="/" class="logo">
-    <img src="/public/images/notebook.png" style="position:relative;top:10px;" alt="{{site.title}}"> {{site.title}}
+      <img
+        src="/public/images/notebook.png"
+        style="position: relative; top: 10px"
+        alt="{{site.title}}"
+      />
+      {{site.title}}
     </a>
     <div class="nav">
-        <a href="https://deepnote.com/?utm_source=deepnotes_io&utm_medium=banner&utm_campaign=nov2020">Powered by <img
+      {% comment %}
+      <a
+        href="https://deepnote.com/?utm_source=deepnotes_io&utm_medium=banner&utm_campaign=nov2020"
+        >Powered by
+        <img
           class="deepnote-logo-header"
           height="32"
           width="32"
-          style="  max-height: 32px !important;
-          position: relative;
-          top: 14px;
-          background-color: #fff;
-          border-radius: 50px;
-          margin-left: 15px;"
-          src="public/images/deepnote-logo.png"/></a>
-        <a href="/about">About</a>
-      <a href="https://github.com/parasdahal" class="social"><img src="/public/images/github.png"></a>
-    <a href="https://twitter.com/parasdahal" class="social"><img src="/public/images/twitter.png"></a>
+          style="
+            max-height: 32px !important;
+            position: relative;
+            top: 14px;
+            background-color: #fff;
+            border-radius: 50px;
+            margin-left: 15px;
+          "
+          src="public/images/deepnote-logo.png"
+      /></a>
+      {% endcomment %}
+      <a href="/about">About</a>
+      <a href="https://github.com/parasdahal" class="social"
+        ><img src="/public/images/github.png"
+      /></a>
+      <a href="https://twitter.com/parasdahal" class="social"
+        ><img src="/public/images/twitter.png"
+      /></a>
     </div>
   </div>
 </dt-header>

@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-RUN apt-get update
+RUN apt-get update -y
 RUN apt-get install -y ruby-full build-essential zlib1g-dev
 RUN apt-get install -y python-pygments
 RUN gem install pygments.rb jekyll jekyll-paginate jekyll-seo-tag jekyll-gist kramdown rouge

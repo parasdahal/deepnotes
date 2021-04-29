@@ -376,3 +376,12 @@ code{
   border-radius: 50px;
   margin-left: 15px;
 }
+
+
+/* Mobile */
+
+/*--------[Nromal Phones]--------*/
+@media only screen and (max-width: 479px){
+
+
+}
